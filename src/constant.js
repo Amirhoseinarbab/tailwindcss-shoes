@@ -44,3 +44,42 @@ export const SHOE_LIST = [
     price: 110,
   },
 ];
+
+export const SHOE_LIST_FA= [
+  {
+    id: 1,
+    src: nike1,
+    className: "bg-[#EEFFA4]",
+    title: "Nike Air Max 270",
+    description:
+      "نایک ایر مکس 270 یک کفش سبک زندگی است که با شیب رنگی پر جنب و جوش خود مطمئناً سرها را برمی انگیزد.",
+    price: 160,
+  },
+  {
+    id: 2,
+    src: nike2,
+    className: "bg-[#DDCEFD]",
+    title: "Nike Air Vapor",
+    description:
+      "Nike Air Vapor یک کفش براق و شیک است که برای هر موقعیتی مناسب است. این کفش مناسب برای هر سبک زندگی فعال است.",
+    price: 100,
+  },
+  {
+    id: 3,
+    src: nike3,
+    className: "bg-[#DAFFA2]",
+    title: "Nike Air Max 2090",
+    description:
+      "نایک ایر مکس 2090 کفشی است که هم شیک و هم راحت است. این کفش مناسب برای هر فردی که مد پیشرو است.",
+    price: 150,
+  },
+  {
+    id: 4,
+    src: nike4,
+    className: "bg-[#FCC4EA]",
+    title: "Nike Air Blazer",
+    description:
+      "نایک ایر بلیزر یک کفش کلاسیک است که برای هر موقعیت غیر رسمی مناسب است. این کفش مناسب برای هر فردی آرام است.",
+    price: 110,
+  },
+];

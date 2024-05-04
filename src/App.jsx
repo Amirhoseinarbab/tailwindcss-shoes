@@ -3,13 +3,14 @@ import { Nav } from "./components/Nav";
 import { NewArrivalsSection } from "./components/NewArrivalsSection";
 import { ShoeDetail } from "./components/ShoeDetail";
 import { Sidebar } from "./components/Sidebar";
-import { SHOE_LIST } from "./constant";
+import { SHOE_LIST_FA } from "./constant";
 import { Cart } from "./components/Cart";
 import { BiMoon, BiSun } from "react-icons/bi";
 
 export function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [currentShoe, setCurrentShoe] = useState(SHOE_LIST[0]);
+  const [engLanguage, setAppLanguage] = useState(true);
+  const [currentShoe, setCurrentShoe] = useState(SHOE_LIST_FA[0]);
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
@@ -18,6 +19,13 @@ export function App() {
       window.document.documentElement.classList.add("dark");
     }
   }, []);
+  useEffect(() => {
+    if (engLanguage === false) {
+      console.log("Lang: farsi");
+    } else {
+      console.log("Lang: english");
+    }
+  }, [engLanguage]);
 
   const toggleDarkMode = () => {
     window.document.documentElement.classList.toggle("dark");
@@ -55,20 +63,17 @@ export function App() {
 
   return (
     <div className="animate-fadeIn p-10 dark:bg-night xl:px-24">
-      <Nav onClickShoppingBtn={() => setIsSidebarOpen(true)} />
-      <ShoeDetail shoe={currentShoe} onClickAdd={addToCart} />
-      <NewArrivalsSection
-        items={SHOE_LIST}
-        onClickCard={setCurrentShoe}
+      <Nav
+        onClickShoppingBtn={() => setIsSidebarOpen(true)}
+        setAppLanguage={setAppLanguage}
       />
+      <ShoeDetail shoe={currentShoe} onClickAdd={addToCart} />
+      <NewArrivalsSection items={SHOE_LIST_FA} onClickCard={setCurrentShoe} />
       <Sidebar
         isOpen={isSidebarOpen}
         onClickClose={() => setIsSidebarOpen(false)}
       >
-        <Cart
-          cartItems={cartItems}
-          onClickTrash={removeFromCart}
-        />
+        <Cart cartItems={cartItems} onClickTrash={removeFromCart} />
       </Sidebar>
       <div className=" fixed bottom-4 right-4">
         <button

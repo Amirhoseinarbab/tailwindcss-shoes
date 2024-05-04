@@ -2,17 +2,13 @@ import { TbShoppingBag } from "react-icons/tb";
 import NikeLogo from "../assets/nike-logo.svg?react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
+import { IoLanguageOutline } from "react-icons/io5";
 
-const ROUTES = [
-  "Home",
-  "About",
-  "Services",
-  "Pricing",
-  "Contact",
-];
-export function Nav({ onClickShoppingBtn }) {
-  const [isMobileMenuShown, setIsMobileMenuShown] =
-    useState(false);
+const ROUTES = ["صفحه اصلی", "درباره", "سرویس", "قیمت ها", "تماس با ما"];
+export function Nav({ onClickShoppingBtn , setAppLanguage }) {
+  const [isMobileMenuShown, setIsMobileMenuShown] = useState(false);
+
+  
   return (
     <nav className="relative z-10 flex flex-wrap items-center justify-between">
       {/* Logo */}
@@ -53,12 +49,22 @@ export function Nav({ onClickShoppingBtn }) {
       </div>
 
       {/* Cart button */}
-      <div
-        onClick={onClickShoppingBtn}
-        className="btn-press-anim fixed bottom-4 left-4 lg:static lg:mr-8"
-      >
-        <div className="flex-center h-12 w-12 cursor-pointer rounded-full bg-white shadow-md">
-          <TbShoppingBag />
+      <div className="flex flex-row">
+        <div
+          onClick={onClickShoppingBtn}
+          className="btn-press-anim fixed bottom-4 left-4 lg:static lg:ml-7 mr-1"
+        >
+          <div className="flex-center h-12 w-12 cursor-pointer rounded-full bg-white shadow-md">
+            <TbShoppingBag />
+          </div>
+        </div>
+        <div
+          onClick={()=>setAppLanguage((state)=>!state)}
+          className="btn-press-anim fixed bottom-4 left-4 lg:static "
+        >
+          <div className="flex-center h-12 w-12 cursor-pointer rounded-full bg-white shadow-md">
+            <IoLanguageOutline />
+          </div>
         </div>
       </div>
     </nav>
