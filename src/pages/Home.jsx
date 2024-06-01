@@ -9,7 +9,7 @@ import { BiMoon, BiSun } from "react-icons/bi";
 
 
 
-export const Home = ({currentShoe, setCurrentShoe , addToCart , cartItems ,removeFromCart ,toggleDarkMode}) => {
+export const Home = ({currentShoe, setCurrentShoe , addToCart , cartItems ,onClickTrash ,toggleDarkMode}) => {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
@@ -24,7 +24,7 @@ export const Home = ({currentShoe, setCurrentShoe , addToCart , cartItems ,remov
         isOpen={isSidebarOpen}
         onClickClose={() => setIsSidebarOpen(false)}
       >
-        <Cart cartItems={cartItems} onClickTrash={removeFromCart} />
+        <Cart cartItems={cartItems} onClickTrash={onClickTrash} />
       </Sidebar>
       <div className=" fixed bottom-4 right-4">
         <button

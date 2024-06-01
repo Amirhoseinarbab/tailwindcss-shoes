@@ -1,13 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout";
-import { Home } from "./pages/home";
+import { Home } from "./pages/Home";
 import Purchases from "./pages/purchases";
 import { useEffect, useState } from "react";
 import { SHOE_LIST_FA } from "./constant";
 import UserData from "./pages/UserData";
 import Success from "./pages/Success";
-// import { Home } from "./pages/home";
-
+23
 export function App() {
   const [currentShoe, setCurrentShoe] = useState(SHOE_LIST_FA[0]);
   const [cartItems, setCartItems] = useState([]);

@@ -19,8 +19,8 @@ export default function Success() {
           <polyline
             fill="none"
             stroke="#4caf50"
-            stroke-miterlimit="10"
-            stroke-width="4"
+            strokeMiterlimit="10"
+            strokeWidth="4"
             points="14,24 21,31 36,16"
           ></polyline>
         </svg>
