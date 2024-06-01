@@ -9,7 +9,6 @@ import { BiMoon, BiSun } from "react-icons/bi";
 
 export function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [engLanguage, setAppLanguage] = useState(true);
   const [currentShoe, setCurrentShoe] = useState(SHOE_LIST_FA[0]);
   const [cartItems, setCartItems] = useState([]);
 
@@ -19,13 +18,7 @@ export function App() {
       window.document.documentElement.classList.add("dark");
     }
   }, []);
-  useEffect(() => {
-    if (engLanguage === false) {
-      console.log("Lang: farsi");
-    } else {
-      console.log("Lang: english");
-    }
-  }, [engLanguage]);
+  
 
   const toggleDarkMode = () => {
     window.document.documentElement.classList.toggle("dark");
@@ -62,10 +55,9 @@ export function App() {
   };
 
   return (
-    <div className="animate-fadeIn p-10 dark:bg-night xl:px-24">
+    <div className="animate-fadeIn p-10 dark:bg-night xl:px-24 noto-kufi-arabic">
       <Nav
         onClickShoppingBtn={() => setIsSidebarOpen(true)}
-        setAppLanguage={setAppLanguage}
       />
       <ShoeDetail shoe={currentShoe} onClickAdd={addToCart} />
       <NewArrivalsSection items={SHOE_LIST_FA} onClickCard={setCurrentShoe} />
