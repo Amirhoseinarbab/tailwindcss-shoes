@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { Nav } from "../components/Nav";
 import { NewArrivalsSection } from "../components/NewArrivalsSection";
 import { ShoeDetail } from "../components/ShoeDetail";
@@ -7,13 +7,17 @@ import { SHOE_LIST_FA } from "../constant";
 import { Cart } from "../components/Cart";
 import { BiMoon, BiSun } from "react-icons/bi";
 
+export function Home({
+  currentShoe,
+  setCurrentShoe,
+  addToCart,
+  cartItems,
+  onClickTrash,
+  toggleDarkMode,
+}) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-
-export const Home = ({currentShoe, setCurrentShoe , addToCart , cartItems ,onClickTrash ,toggleDarkMode}) => {
-
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
- console.log(cartItems)
+  console.log(cartItems);
 
   return (
     <>
@@ -37,4 +41,4 @@ export const Home = ({currentShoe, setCurrentShoe , addToCart , cartItems ,onCli
       </div>
     </>
   );
-};
+}
