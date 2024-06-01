@@ -1,14 +1,14 @@
+import { Route, Routes } from "react-router-dom";
+import Layout from "./pages/Layout";
+import { Home } from "./pages/home";
+import Purchases from "./pages/purchases";
 import { useEffect, useState } from "react";
-import { Nav } from "./components/Nav";
-import { NewArrivalsSection } from "./components/NewArrivalsSection";
-import { ShoeDetail } from "./components/ShoeDetail";
-import { Sidebar } from "./components/Sidebar";
 import { SHOE_LIST_FA } from "./constant";
-import { Cart } from "./components/Cart";
-import { BiMoon, BiSun } from "react-icons/bi";
+import UserData from "./pages/UserData";
+import Success from "./pages/Success";
+// import { Home } from "./pages/home";
 
 export function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentShoe, setCurrentShoe] = useState(SHOE_LIST_FA[0]);
   const [cartItems, setCartItems] = useState([]);
 
@@ -19,7 +19,7 @@ export function App() {
     }
   }, []);
   
-
+  
   const toggleDarkMode = () => {
     window.document.documentElement.classList.toggle("dark");
     localStorage.setItem(
@@ -27,7 +27,7 @@ export function App() {
       window.document.documentElement.classList.contains("dark"),
     );
   };
-
+  
   const removeFromCart = (productId) => {
     console.log("***", productId);
     const updatedCartItems = [...cartItems];
@@ -49,33 +49,53 @@ export function App() {
       } else {
         updatedCartItems.push({ product, qty, size });
       }
-
+  
       setCartItems(updatedCartItems);
     }
-  };
+};
 
-  return (
-    <div className="animate-fadeIn p-10 dark:bg-night xl:px-24 noto-kufi-arabic">
-      <Nav
-        onClickShoppingBtn={() => setIsSidebarOpen(true)}
-      />
-      <ShoeDetail shoe={currentShoe} onClickAdd={addToCart} />
-      <NewArrivalsSection items={SHOE_LIST_FA} onClickCard={setCurrentShoe} />
-      <Sidebar
-        isOpen={isSidebarOpen}
-        onClickClose={() => setIsSidebarOpen(false)}
-      >
-        <Cart cartItems={cartItems} onClickTrash={removeFromCart} />
-      </Sidebar>
-      <div className=" fixed bottom-4 right-4">
-        <button
-          onClick={toggleDarkMode}
-          className="rounded-full bg-night-50 px-4 py-2 text-white shadow-lg dark:bg-white dark:text-night"
-        >
-          <BiSun className="hidden dark:block" />
-          <BiMoon className="dark:hidden" />
-        </button>
-      </div>
-    </div>
-  );
-}
+
+//   return (
+//     <div className="animate-fadeIn p-10 dark:bg-night xl:px-24 noto-kufi-arabic">
+//       <Nav
+//         onClickShoppingBtn={() => setIsSidebarOpen(true)}
+//       />
+//       <ShoeDetail shoe={currentShoe} onClickAdd={addToCart} />
+//       <NewArrivalsSection items={SHOE_LIST_FA} onClickCard={setCurrentShoe} />
+//       <Sidebar
+//         isOpen={isSidebarOpen}
+//         onClickClose={() => setIsSidebarOpen(false)}
+//       >
+//         <Cart cartItems={cartItems} onClickTrash={removeFromCart} />
+//       </Sidebar>
+//       <div className=" fixed bottom-4 right-4">
+//         <button
+//           onClick={toggleDarkMode}
+//           className="rounded-full bg-night-50 px-4 py-2 text-white shadow-lg dark:bg-white dark:text-night"
+//         >
+//           <BiSun className="hidden dark:block" />
+//           <BiMoon className="dark:hidden" />
+//         </button>
+//       </div>
+//     </div>
+
+
+// );
+return(
+  
+  
+  <Routes>
+      <Route path="/" element={<Layout />} >
+
+      {/* <Route index element={<Test />} /> */}
+
+      <Route index element={<Home currentShoe={currentShoe} setCurrentShoe={setCurrentShoe} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart} toggleDarkMode={toggleDarkMode} onClickTrash={removeFromCart}/>} />
+      <Route path="/purchases" element={<Purchases currentShoe={currentShoe} setCurrentShoe={setCurrentShoe} cartItems={cartItems} setCartItems={setCartItems} addToCart={addToCart}  onClickTrash={removeFromCart}/>} />
+    <Route path="/user-informations" element={<UserData />} />
+      <Route path="/success" element={<Success />} />
+    </Route>
+    </Routes>
+      
+    )
+  }
+  
