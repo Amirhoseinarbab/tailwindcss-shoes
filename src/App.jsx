@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout";
 import { Home } from "./pages/Home";
-import Purchases from "./pages/purchases";
+import {Purchases} from "./pages/Purchases";
 import { useEffect, useState } from "react";
 import { SHOE_LIST_FA } from "./constant";
 import UserData from "./pages/UserData";

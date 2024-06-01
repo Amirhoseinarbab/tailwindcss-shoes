@@ -5,7 +5,7 @@ import { CiTrash } from "react-icons/ci";
 
 
 
-export default function Purchases({ cartItems, onClickTrash ,setCartItems}) {
+export  function Purchases({ cartItems, onClickTrash ,setCartItems}) {
     console.log(cartItems)
     const totalPrice = cartItems.reduce((total, item) => total + (item.product.price * item.qty), 0);
   return (
