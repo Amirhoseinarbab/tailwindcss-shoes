@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { SHOE_LIST_FA } from "./constant";
 import UserData from "./pages/UserData";
 import Success from "./pages/Success";
-23
+
 export function App() {
   const [currentShoe, setCurrentShoe] = useState(SHOE_LIST_FA[0]);
   const [cartItems, setCartItems] = useState([]);
