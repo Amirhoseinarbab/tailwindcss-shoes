@@ -7,12 +7,16 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server --watch data/server.json --port 9000 --delay 500"
   },
   "dependencies": {
     "@fontsource-variable/nunito-sans": "^5.0.9",
+    "express": "^4.19.2",
+    "json-server": "^0.17.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.23.1",
     "tailwind-merge": "^1.14.0",

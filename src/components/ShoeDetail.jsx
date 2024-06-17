@@ -17,8 +17,8 @@ export function ShoeDetail({ shoe, onClickAdd }) {
         <div className="text-5xl font-black md:text-9xl">{shoe.title}</div>
         <div className="font-medium md:text-xl">{shoe.description}</div>
         <div className="flex space-x-6">
-          <div className=" text-3xl font-extrabold md:text-6xl">
-            {shoe.price} $
+          <div className=" text-2xl font-extrabold md:text-4xl">
+            {shoe.price} ﷼
           </div>
           <Select
             value={form.qty}
@@ -37,7 +37,7 @@ export function ShoeDetail({ shoe, onClickAdd }) {
         <div className="space-x-10">
           <button
             onClick={() => onClickAdd(shoe, form.qty, form.size)}
-            className="btn-press-anim  h-14 w-44 bg-black size-large text-white hover:bg-gray-900 active:bg-gray-700 dark:bg-white  dark:text-black"
+            className="btn-press-anim  size-large h-14 w-44 bg-black text-white hover:bg-gray-900 active:bg-gray-700 dark:bg-white  dark:text-black"
           >
             اضافه به سبد
           </button>

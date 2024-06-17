@@ -10,10 +10,7 @@ export function Card({ item, onClick }) {
           SHOP NOW +
         </div>
       </div>
-      <img
-        className="absolute left-[50%] top-5 h-40"
-        src={item.src}
-      />
+      <img className="absolute left-[50%] top-5 h-40" src={item.src} />
     </div>
   );
 }

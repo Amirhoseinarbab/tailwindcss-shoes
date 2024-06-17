@@ -17,7 +17,6 @@ export function Home({
 }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  console.log(cartItems);
 
   return (
     <>

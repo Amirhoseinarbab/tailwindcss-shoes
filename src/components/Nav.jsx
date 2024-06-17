@@ -1,13 +1,17 @@
 import { TbShoppingBag } from "react-icons/tb";
 import NikeLogo from "../assets/nike-logo.svg?react";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../App";
 
-const ROUTES = ["صفحه اصلی", "درباره", "سرویس", "قیمت ها", "تماس با ما"];
-export function Nav({ onClickShoppingBtn ,  }) {
+export function Nav({ onClickShoppingBtn }) {
+  const { user, setUser } = useContext(AppContext);
+
   const [isMobileMenuShown, setIsMobileMenuShown] = useState(false);
 
-  
+  const navigate = useNavigate();
+
   return (
     <nav className="relative z-10 flex flex-wrap items-center justify-between">
       {/* Logo */}
@@ -29,34 +33,81 @@ export function Nav({ onClickShoppingBtn ,  }) {
           isMobileMenuShown === false && "hidden"
         } w-full lg:block lg:w-auto`}
       >
-        <ul className="flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 text-lg lg:flex-row lg:space-x-8 lg:border-none lg:bg-transparent lg:dark:text-white">
+        {/* <ul className="flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 text-lg lg:flex-row lg:space-x-8 lg:border-none lg:bg-transparent lg:dark:text-white">
           {ROUTES.map((route, i) => {
             return (
               <li
-                className={`cursor-pointer rounded px-3 py-2 lg:hover:bg-transparent lg:hover:text-blue-500 ${
-                  i === 0
-                    ? "bg-blue-500 text-white lg:bg-transparent lg:text-blue-500 "
-                    : "hover:bg-gray-100"
-                } ${(i == 3 || i == 4) && "lg:text-white"}`}
+                className={`${i === 0 ? "bg-blue-500 " : "hover:bg-gray-100"}
+                    ${
+                      (i == 3 || i == 4) && "lg:text-white"
+                    } cursor-pointer rounded px-3 py-2 text-white lg:bg-transparent lg:text-blue-500 lg:hover:bg-transparent lg:hover:text-blue-500`}
                 key={route}
               >
                 <a>{route}</a>
               </li>
             );
           })}
+        </ul> */}
+
+        <ul className="flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 text-lg lg:flex-row lg:space-x-8 lg:border-none lg:bg-transparent lg:dark:text-white">
+          <li className="false  cursor-pointer rounded bg-blue-500 px-3 py-2 text-white lg:bg-transparent lg:text-blue-500 lg:hover:bg-transparent lg:hover:text-blue-500">
+            <a className="pl-8">صفحه اصلی</a>
+          </li>
+          {user === null && (
+            <>
+              <li
+                onClick={() => navigate("/login")}
+                className="false cursor-pointer rounded px-3 py-2 text-white hover:bg-gray-100 lg:bg-transparent lg:text-blue-500 lg:hover:bg-transparent lg:hover:text-blue-500"
+              >
+                <a>ورود</a>
+              </li>
+              <li
+                onClick={() => navigate("/register")}
+                className="false cursor-pointer rounded px-3 py-2 text-white hover:bg-gray-100 lg:bg-transparent lg:text-blue-500 lg:hover:bg-transparent lg:hover:text-blue-500"
+              >
+                <a>ثبت نام</a>
+              </li>
+            </>
+          )}
+
+          {user !== null && (
+            <>
+              
+              <li
+                onClick={() => navigate("/user-purchases-history")}
+                className="false cursor-pointer rounded px-3 py-2 text-white hover:bg-gray-100 lg:bg-transparent lg:text-blue-500 lg:hover:bg-transparent lg:hover:text-blue-500"
+              >
+                <a className="pr-1"> مشاهده تاریخچه خرید</a>
+              </li>
+
+             <li
+                onClick={() => setUser(null)}
+                className="false cursor-pointer rounded px-3 py-2 text-white hover:bg-gray-100 lg:bg-transparent lg:text-white lg:hover:bg-transparent lg:hover:text-blue-500"
+              >
+                <a> خروج</a>
+              </li>
+             
+            </>
+          )}
+
+          <li className="cursor-pointer rounded px-3 py-2 text-white hover:bg-gray-100 lg:bg-transparent lg:text-blue-500 lg:text-white lg:hover:bg-transparent lg:hover:text-blue-500">
+            <a>درباره</a>
+          </li>
+          <li className="cursor-pointer rounded px-3 py-2 text-white hover:bg-gray-100 lg:bg-transparent lg:text-blue-500 lg:text-white lg:hover:bg-transparent lg:hover:text-blue-500">
+            <a>تماس با ما</a>
+          </li>
         </ul>
       </div>
 
       {/* Cart button */}
-        <div
-          onClick={onClickShoppingBtn}
-          className="btn-press-anim fixed bottom-4 left-4 lg:static lg:ml-7 mr-1"
-        >
-          <div className="flex-center h-12 w-12 cursor-pointer rounded-full bg-white shadow-md">
-            <TbShoppingBag />
-          </div>
+      <div
+        onClick={onClickShoppingBtn}
+        className="btn-press-anim fixed bottom-4 left-4 mr-1 lg:static lg:ml-7"
+      >
+        <div className="flex-center h-12 w-12 cursor-pointer rounded-full bg-white shadow-md">
+          <TbShoppingBag />
         </div>
-       
+      </div>
     </nav>
   );
 }

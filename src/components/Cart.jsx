@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { CartItem } from "./CartItem";
+import { useContext } from "react";
+import { AppContext } from "../App";
 export function Cart({ cartItems, onClickTrash }) {
-  console.log(cartItems);
+  const { user } = useContext(AppContext);
+
   return (
     <>
       <div className="relative min-h-full">
@@ -12,31 +15,36 @@ export function Cart({ cartItems, onClickTrash }) {
               <CartItem item={cartItem} onClickTrash={onClickTrash} />
             </li>
           ))}
-        </ul>
-        {
-          cartItems.length !== 0 && (
-            <Link 
-            to="/purchases"
+          {cartItems.length !== 0 && user !== null && (
+            <Link
+              to="/purchases"
               type="button"
-              className="p-5 h-34 w-88 btn-press-anim size-large absolute  bottom-8  bg-black text-white hover:bg-gray-900 active:bg-gray-700 dark:bg-white  dark:text-black"
+              className="h-34 w-88 btn-press-anim size-large absolute bottom-8  bg-black  p-5 text-white hover:bg-gray-900 active:bg-gray-700 dark:bg-white  dark:text-black"
 
               // className=" absolute bottom-8  focus:outline-none  focus:ring-4 focus:ring-[#DAFFA2] cursor-pointer space-y-2 bg-gray-950 text-white p-2 hover:bg-[#DAFFA2] hover:text-gray-950 dark:bg-transparent dark:hover:bg-night-50 "
               // onClick={handleClick}
             >
-             مشاهده ی فاکتور خرید
+              مشاهده ی فاکتور
             </Link>
-          )
-        }
-         {
-          cartItems.length === 0 && (
-            <div className="p-10 flex flex-row justify-center items-center  ">
-              <p className="">
-             😢 سبد خرید شما خالی است
+          )}
+          {user === null && (
+            <Link
+              to="/login"
+              type="button"
+              className="h-34 w-88 btn-press-anim size-large absolute bottom-8  bg-black  p-5 text-white hover:bg-gray-900 active:bg-gray-700 dark:bg-white  dark:text-black"
 
-              </p>
+              // className=" absolute bottom-8  focus:outline-none  focus:ring-4 focus:ring-[#DAFFA2] cursor-pointer space-y-2 bg-gray-950 text-white p-2 hover:bg-[#DAFFA2] hover:text-gray-950 dark:bg-transparent dark:hover:bg-night-50 "
+              // onClick={handleClick}
+            >
+              ابتدا وارد شوید
+            </Link>
+          )}
+          {cartItems.length === 0 && (
+            <div className="flex flex-row items-center justify-center p-10  ">
+              <p className="">😢 سبد خرید شما خالی است</p>
             </div>
-          )
-        }
+          )}
+        </ul>
       </div>
     </>
   );

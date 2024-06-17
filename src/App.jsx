@@ -1,15 +1,78 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout";
 import { Home } from "./pages/Home";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { SHOE_LIST_FA } from "./constant";
-import UserData from "./pages/UserData";
 import Success from "./pages/Success";
 import { Purchases } from "./pages/purchases";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
+import UserPurchasesHistory from "./pages/UserPurchasesHistory";
+import LastStep from "./pages/LastStep";
+
+
+
+export const AppContext = createContext()
 
 export function App() {
   const [currentShoe, setCurrentShoe] = useState(SHOE_LIST_FA[0]);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([
+    
+      // {
+      //   product: {
+      //     id: 2,
+      //     src: "/src/assets/n2-min.png",
+      //     className: "bg-[#DDCEFD]",
+      //     title: "Nike Air Vapor",
+      //     description:
+      //       "Nike Air Vapor یک کفش براق و شیک است که برای هر موقعیتی مناسب است. این کفش مناسب برای هر سبک زندگی فعال است.",
+      //     price: 100,
+      //   },
+      //   qty: "1",
+      //   size: "45",
+      // }
+    
+]);
+
+
+  const [user, setUser] = useState( null
+  //   {
+  //   email: "ali@example.com",
+  //   password: "123",
+  //   firstName: "ali",
+  //   lastName: "arbab",
+  //   address: "تهران خبالان آزادی پ 10",
+  //   cart: [
+  //     {
+  //       product: {
+  //         id: 1,
+  //         src: "/src/assets/n1-min.png",
+  //         className: "bg-[#EEFFA4]",
+  //         title: "Nike Air Max 270",
+  //         description:
+  //           "نایک ایر مکس 270 یک کفش سبک زندگی است که با شیب رنگی پر جنب و جوش خود مطمئناً سرها را برمی انگیزد.",
+  //         price: 160,
+  //       },
+  //       qty: "3",
+  //       size: "45",
+  //     },
+  //     {
+  //       product: {
+  //         id: 2,
+  //         src: "/src/assets/n2-min.png",
+  //         className: "bg-[#DDCEFD]",
+  //         title: "Nike Air Vapor",
+  //         description:
+  //           "Nike Air Vapor یک کفش براق و شیک است که برای هر موقعیتی مناسب است. این کفش مناسب برای هر سبک زندگی فعال است.",
+  //         price: 100,
+  //       },
+  //       qty: "1",
+  //       size: "45",
+  //     },
+  //   ],
+  // }
+);
+
 
   useEffect(() => {
     const isDarkMode = localStorage.getItem("isDarkMode");
@@ -27,7 +90,6 @@ export function App() {
   };
 
   const removeFromCart = (productId) => {
-    console.log("***", productId);
     const updatedCartItems = [...cartItems];
     const existingItemIndex = cartItems.findIndex(
       (item) => item.product.id === productId,
@@ -78,6 +140,8 @@ export function App() {
 
   // );
   return (
+    <AppContext.Provider value={{user , setUser , setCartItems}}>
+
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* <Route index element={<Test />} /> */}
@@ -86,32 +150,36 @@ export function App() {
           index
           element={
             <Home
-              currentShoe={currentShoe}
-              setCurrentShoe={setCurrentShoe}
-              cartItems={cartItems}
+            currentShoe={currentShoe}
+            setCurrentShoe={setCurrentShoe}
+            cartItems={cartItems}
               setCartItems={setCartItems}
               addToCart={addToCart}
               toggleDarkMode={toggleDarkMode}
               onClickTrash={removeFromCart}
-            />
-          }
-        />
+              />
+              }
+              />
         <Route
           path="/purchases"
           element={
             <Purchases
-              currentShoe={currentShoe}
-              setCurrentShoe={setCurrentShoe}
-              cartItems={cartItems}
-              setCartItems={setCartItems}
-              addToCart={addToCart}
-              onClickTrash={removeFromCart}
+            currentShoe={currentShoe}
+            setCurrentShoe={setCurrentShoe}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+            addToCart={addToCart}
+            onClickTrash={removeFromCart}
             />
-          }
-        />
-        <Route path="/user-informations" element={<UserData />} />
+            }
+            />
+        <Route path="/user-purchases-history" element={<UserPurchasesHistory />} />
+        <Route path="/last-step" element={<LastStep />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Route>
     </Routes>
+            </AppContext.Provider>
   );
 }
